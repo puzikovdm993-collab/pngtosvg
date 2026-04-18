@@ -136,38 +136,8 @@ class PNGToSVGConverter {
         const imageData = this.ctx.getImageData(0, 0, width, height);
         const pixels = imageData.data;
         
-        // Create SVG with path
-        let paths = [];
-        const visited = new Array(width * height).fill(false);
-        
-        // Simple contour tracing algorithm
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                const idx = (y * width + x) * 4;
-                const alpha = pixels[idx + 3];
-                
-                if (alpha > 128 && !visited[y * width + x]) {
-                    // Found a non-transparent pixel, trace the shape
-                    const color = {
-                        r: pixels[idx],
-                        g: pixels[idx + 1],
-                        b: pixels[idx + 2]
-                    };
-                    
-                    const pathData = this.traceShape(pixels, width, height, x, y, visited, threshold);
-                    
-                    if (pathData && pathData.length > 0) {
-                        const colorStr = `rgb(${color.r},${color.g},${color.b})`;
-                        paths.push(`<path d="${pathData}" fill="${colorStr}" stroke="none"/>`);
-                    }
-                }
-            }
-        }
-        
-        // If no paths found, use a simpler pixel-based approach
-        if (paths.length === 0) {
-            paths = this.createPixelSVG(pixels, width, height, threshold);
-        }
+        // Create SVG with rectangles for each visible pixel
+        const paths = this.createPixelSVG(pixels, width, height, threshold);
         
         // Build SVG string
         const svgContent = paths.join('\n');
