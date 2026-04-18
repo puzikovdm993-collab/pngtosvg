@@ -9,10 +9,11 @@ class PNGToSVGConverter {
         this.dropZone = document.getElementById('dropZone');
         this.fileInput = document.getElementById('fileInput');
         this.uploadContent = document.getElementById('uploadContent');
-        this.previewOriginal = document.getElementById('previewOriginal');
+        this.originalImage = document.getElementById('originalImage');
         this.controlsPanel = document.getElementById('controlsPanel');
         this.resultArea = document.getElementById('resultArea');
         this.svgContainer = document.getElementById('svgContainer');
+        this.workArea = document.getElementById('workArea');
         this.convertBtn = document.getElementById('convertBtn');
         this.downloadBtn = document.getElementById('downloadBtn');
         this.resetBtn = document.getElementById('resetBtn');
@@ -75,7 +76,7 @@ class PNGToSVGConverter {
         reader.onload = (e) => {
             const img = new Image();
             img.onload = () => {
-                this.previewOriginal.src = e.target.result;
+                this.originalImage.src = e.target.result;
                 this.currentImageData = e.target.result;
                 
                 // Скрываем зону загрузки полностью
@@ -88,12 +89,6 @@ class PNGToSVGConverter {
                 this.downloadBtn.disabled = true;
                 this.resultArea.classList.remove('hidden');
                 this.svgContainer.innerHTML = '<span class="placeholder-text">Нажмите "Конвертировать"</span>';
-                
-                // Обновляем оригинальное изображение в области результата
-                const originalImageEl = document.getElementById('originalImage');
-                if (originalImageEl) {
-                    originalImageEl.src = e.target.result;
-                }
             };
             img.src = e.target.result;
         };
@@ -177,7 +172,7 @@ class PNGToSVGConverter {
         this.currentImageData = null;
         this.currentSVG = null;
         this.fileInput.value = '';
-        this.previewOriginal.src = '';
+        this.originalImage.src = '';
         this.svgContainer.innerHTML = '';
         
         // Reset UI - показываем зону загрузки, скрываем рабочую область
