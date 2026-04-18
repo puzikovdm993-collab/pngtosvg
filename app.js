@@ -83,6 +83,8 @@ class PNGToSVGConverter {
                 this.controls.style.display = 'block';
                 this.downloadBtn.disabled = true;
                 this.svgPreview.innerHTML = '';
+                // Скрываем зону загрузки после успешной загрузки файла
+                this.uploadArea.style.display = 'none';
                 this.showStatus('Файл загружен. Нажмите "Конвертировать"', 'info');
             };
             img.src = e.target.result;
