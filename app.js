@@ -78,18 +78,18 @@ class PNGToSVGConverter {
                 this.previewOriginal.src = e.target.result;
                 this.currentImageData = e.target.result;
                 
-                // Hide upload content, show image
-                this.uploadContent.classList.add('hidden');
-                this.previewOriginal.classList.remove('hidden');
-                this.dropZone.classList.add('has-image');
+                // Скрываем зону загрузки полностью
+                this.dropZone.classList.add('hidden');
                 
-                // Show controls
+                // Показываем рабочую область с настройками и превью
                 this.controlsPanel.classList.remove('hidden');
+                this.workArea.style.display = 'flex';
+                
                 this.downloadBtn.disabled = true;
-                this.resultArea.classList.add('hidden');
+                this.resultArea.classList.remove('hidden');
                 this.svgContainer.innerHTML = '<span class="placeholder-text">Нажмите "Конвертировать"</span>';
                 
-                // Update original image in result area
+                // Обновляем оригинальное изображение в области результата
                 const originalImageEl = document.getElementById('originalImage');
                 if (originalImageEl) {
                     originalImageEl.src = e.target.result;
@@ -180,11 +180,10 @@ class PNGToSVGConverter {
         this.previewOriginal.src = '';
         this.svgContainer.innerHTML = '';
         
-        // Reset UI
-        this.uploadContent.classList.remove('hidden');
-        this.previewOriginal.classList.add('hidden');
-        this.dropZone.classList.remove('has-image');
+        // Reset UI - показываем зону загрузки, скрываем рабочую область
+        this.dropZone.classList.remove('hidden');
         this.controlsPanel.classList.add('hidden');
+        this.workArea.style.display = 'none';
         this.resultArea.classList.add('hidden');
         this.downloadBtn.disabled = true;
         this.convertBtn.disabled = false;
