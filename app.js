@@ -13,6 +13,7 @@ class PNGToSVGConverter {
         this.controlsPanel = document.getElementById('controlsPanel');
         this.resultArea = document.getElementById('resultArea');
         this.svgContainer = document.getElementById('svgContainer');
+        this.workArea = document.getElementById('workArea');
         this.convertBtn = document.getElementById('convertBtn');
         this.downloadBtn = document.getElementById('downloadBtn');
         this.resetBtn = document.getElementById('resetBtn');
