@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNG to SVG Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключаем библиотеку ImageTracer.js -->
+    <script src="https://cdn.jsdelivr.net/npm/imagetracerjs@1.2.6/imagetracer_v1.2.6.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>PNG to SVG Converter</h1>
+        <p class="description">Конвертируйте ваши PNG изображения в SVG формат прямо в браузере</p>
+        
+        <div class="drop-zone hidden" id="dropZone">
+            <div id="uploadContent">
+                <div class="upload-icon">📁</div>
+                <p>Перетащите PNG файл сюда или кликните для выбора</p>
+            </div>
+            <input type="file" id="fileInput" accept=".png,image/png" hidden>
+        </div>
+
+        <div class="work-area" id="workArea" style="display: none;">
+            <div class="controls-panel hidden" id="controlsPanel">
+                <div class="settings-grid">
+                    <div class="control-group">
+                        <label for="alphaThreshold">Порог прозрачности</label>
+                        <input type="range" id="alphaThreshold" min="0" max="255" value="128">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="scale">Масштаб</label>
+                        <input type="range" id="scale" min="0.1" max="2" step="0.1" value="1">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="colors">Количество цветов</label>
+                        <input type="range" id="colors" min="2" max="64" value="16">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="detail">Детализация</label>
+                        <input type="range" id="detail" min="0" max="10" value="1">
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button id="convertBtn" class="btn-primary">Конвертировать</button>
+                    <button id="downloadBtn" class="btn-success" disabled>Скачать SVG</button>
+                    <button id="resetBtn" class="btn-secondary">Сбросить</button>
+                </div>
+            </div>
+
+            <div class="result-area hidden" id="resultArea">
+                <div class="preview-row">
+                    <div class="preview-card">
+                        <h3>Оригинал</h3>
+                        <div class="image-container">
+                            <img id="originalImage" alt="Original PNG">
+                        </div>
+                    </div>
+                    
+                    <div class="preview-card">
+                        <h3>Результат (SVG)</h3>
+                        <div class="image-container svg-container" id="svgContainer">
+                            <span class="placeholder-text">Нажмите "Конвертировать"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
