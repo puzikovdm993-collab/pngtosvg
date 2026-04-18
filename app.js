@@ -4,7 +4,7 @@
 class PNGToSVGConverter {
     constructor() {
         this.canvas = document.createElement('canvas');
-        this.ctx = this.canvas.getContext('2d');
+        this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
         this.currentImageData = null;
         this.currentSVG = null;
         
