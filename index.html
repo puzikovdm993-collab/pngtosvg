@@ -53,8 +53,21 @@
         </div>
 
         <div class="result-area hidden" id="resultArea">
-            <h3>Результат (SVG)</h3>
-            <div id="svgContainer"></div>
+            <div class="preview-row">
+                <div class="preview-card">
+                    <h3>Оригинал</h3>
+                    <div class="image-container">
+                        <img id="originalImage" alt="Original PNG">
+                    </div>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>Результат (SVG)</h3>
+                    <div class="image-container svg-container" id="svgContainer">
+                        <span class="placeholder-text">Нажмите "Конвертировать"</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

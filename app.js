@@ -87,7 +87,13 @@ class PNGToSVGConverter {
                 this.controlsPanel.classList.remove('hidden');
                 this.downloadBtn.disabled = true;
                 this.resultArea.classList.add('hidden');
-                this.svgContainer.innerHTML = '';
+                this.svgContainer.innerHTML = '<span class="placeholder-text">Нажмите "Конвертировать"</span>';
+                
+                // Update original image in result area
+                const originalImageEl = document.getElementById('originalImage');
+                if (originalImageEl) {
+                    originalImageEl.src = e.target.result;
+                }
             };
             img.src = e.target.result;
         };
